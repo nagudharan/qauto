@@ -16,6 +16,7 @@ const quoraPost = async (req, res) => {
         : puppeteer.executablePath(),
   });
   try {
+    const page = await browser.newPage();
     // Navigate to Quora.com
     await page.goto('https://www.quora.com');
 
