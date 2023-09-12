@@ -1,5 +1,5 @@
 const express = require("express");
-const { quoraPost } = require("quoraPost.js");
+const { quoraPost } = require("./quoraPost");
 const app = express();
 
 const PORT = process.env.PORT || 4000;

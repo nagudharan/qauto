@@ -96,4 +96,4 @@ const quoraPost = async (req, res) => {
   }
 };
 
-module.exports = { scrapeLogic };
+module.exports = { quoraPost };
