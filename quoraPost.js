@@ -22,21 +22,23 @@ const quoraPost = async (req, res) => {
 
     // Fill in the login credentials
     await page.type('#email', process.env.QUORA_USER_NAME);
-    await page.waitForTimeout(3000);
-    
+    //await page.waitForTimeout(3000);
+    new Promise(r => setTimeout(r, 3000));
     await page.type('#password', process.env.QUORA_PASSWORD);
-    await page.waitForTimeout(3000);
+    //await page.waitForTimeout(3000);
+    new Promise(r => setTimeout(r, 3000));
 
     // Click the login button
     await page.click('button[tabindex="4"]');
-    await page.waitForTimeout(6000);
+    //await page.waitForTimeout(6000);
+    new Promise(r => setTimeout(r, 15000));
     // Wait for the login to complete (you might need to adjust this)
     await page.waitForSelector('button[aria-label="Add question"]');
-    await page.waitForTimeout(10000);
+    new Promise(r => setTimeout(r, 15000));
 
     await page.click('button[aria-label="Add question"]');
     console.log('Add question button clicked!');
-    await page.waitForTimeout(10000);
+    new Promise(r => setTimeout(r, 15000));
     
  // Use XPath to locate the tab element by its text content
  const tabElement = await page.$x('//div[contains(text(), "Create Post")]');
@@ -51,7 +53,7 @@ const quoraPost = async (req, res) => {
 
 
 
-    await page.waitForTimeout(10000);
+ new Promise(r => setTimeout(r, 15000));
      // Select the div with class "content" and add text to its innerHTML
     await page.evaluate(() => {
       const contentDiv = document.querySelector('div.content');
@@ -60,7 +62,7 @@ const quoraPost = async (req, res) => {
       }
     });
     console.log('Added text to "content" div successfully.');
-    await page.waitForTimeout(10000);
+    new Promise(r => setTimeout(r, 15000));
     // Perform any additional actions and submit the post
 
  
@@ -86,7 +88,7 @@ const quoraPost = async (req, res) => {
 
      
     // Wait for a while to make sure the content is posted
-    await page.waitForTimeout(10000); // Adjust the timeout as needed
+    new Promise(r => setTimeout(r, 15000));
 
     console.log('Content posted successfully.');
   } catch (error) {
