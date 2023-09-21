@@ -17,8 +17,9 @@ const quoraPost = async (req, res) => {
   });
   try {
     const page = await browser.newPage();
-    const cookies=process.env.QUORA_SessionCookie;
-    for (const cookie of cookies) {
+    const cookiesString = process.env.QUORA_SessionCookie;
+const cookiesArray = JSON.parse(cookiesString);
+    for (const cookie of cookiesArray) {
       await page.setCookie(cookie);
     }
     // Navigate to Quora.com
