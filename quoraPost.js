@@ -17,21 +17,25 @@ const quoraPost = async (req, res) => {
   });
   try {
     const page = await browser.newPage();
+    const cookies=process.env.QUORA_SessionCookie;
+    for (const cookie of cookies) {
+      await page.setCookie(cookie);
+    }
     // Navigate to Quora.com
     await page.goto('https://www.quora.com');
 
     // Fill in the login credentials
-    await page.type('#email', process.env.QUORA_USER_NAME);
+    //await page.type('#email', process.env.QUORA_USER_NAME);
     //await page.waitForTimeout(3000);
-    new Promise(r => setTimeout(r, 3000));
-    await page.type('#password', process.env.QUORA_PASSWORD);
+    //new Promise(r => setTimeout(r, 3000));
+    //await page.type('#password', process.env.QUORA_PASSWORD);
     //await page.waitForTimeout(3000);
-    new Promise(r => setTimeout(r, 3000));
+    //new Promise(r => setTimeout(r, 3000));
 
     // Click the login button
-    await page.click('button[tabindex="4"]');
-    //await page.waitForTimeout(6000);
-    new Promise(r => setTimeout(r, 15000));
+    //await page.click('button[tabindex="4"]');
+    await page.waitForTimeout(6000);
+    //new Promise(r => setTimeout(r, 15000));
     // Wait for the login to complete (you might need to adjust this)
     await page.waitForSelector('button[aria-label="Add question"]');
     new Promise(r => setTimeout(r, 15000));
