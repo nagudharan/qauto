@@ -18,6 +18,7 @@ const quoraPost = async (req, res) => {
   try {
     const page = await browser.newPage();
     const cookiesString = process.env.QUORA_SessionCookie;
+    console.log(cookiesString);
 const cookiesArray = JSON.parse(cookiesString);
     for (const cookie of cookiesArray) {
       await page.setCookie(cookie);
