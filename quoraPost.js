@@ -40,11 +40,12 @@ const cookiesArray = JSON.parse(cookiesString);
     //new Promise(r => setTimeout(r, 15000));
     // Wait for the login to complete (you might need to adjust this)
     await page.waitForSelector('button[aria-label="Add question"]');
-    new Promise(r => setTimeout(r, 15000));
+    await page.waitForTimeout(15000);
 
     await page.click('button[aria-label="Add question"]');
     console.log('Add question button clicked!');
-    new Promise(r => setTimeout(r, 15000));
+//    new Promise(r => setTimeout(r, 15000));
+await page.waitForTimeout(15000);
     
  // Use XPath to locate the tab element by its text content
  const tabElement = await page.$x('//div[contains(text(), "Create Post")]');
@@ -59,7 +60,8 @@ const cookiesArray = JSON.parse(cookiesString);
 
 
 
- new Promise(r => setTimeout(r, 15000));
+ //new Promise(r => setTimeout(r, 15000));
+ await page.waitForTimeout(15000);
      // Select the div with class "content" and add text to its innerHTML
     await page.evaluate(() => {
       const contentDiv = document.querySelector('div.content');
@@ -68,7 +70,8 @@ const cookiesArray = JSON.parse(cookiesString);
       }
     });
     console.log('Added text to "content" div successfully.');
-    new Promise(r => setTimeout(r, 15000));
+    //new Promise(r => setTimeout(r, 15000));
+    await page.waitForTimeout(15000);
     // Perform any additional actions and submit the post
 
  
@@ -94,8 +97,8 @@ const cookiesArray = JSON.parse(cookiesString);
 
      
     // Wait for a while to make sure the content is posted
-    new Promise(r => setTimeout(r, 15000));
-
+    //new Promise(r => setTimeout(r, 15000));
+    await page.waitForTimeout(15000);
     console.log('Content posted successfully.');
   } catch (error) {
     console.error('An error occurred:', error);
