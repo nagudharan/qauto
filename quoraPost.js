@@ -63,12 +63,12 @@ await page.waitForTimeout(15000);
  //new Promise(r => setTimeout(r, 15000));
  await page.waitForTimeout(15000);
      // Select the div with class "content" and add text to its innerHTML
-    await page.evaluate(() => {
+    await page.evaluate((contentHTML) => {
       const contentDiv = document.querySelector('div.content');
       if (contentDiv) {
         contentDiv.innerHTML = contentHTML;
       }
-    });
+    },contentHTML);
     console.log('Added text to "content" div successfully.');
     //new Promise(r => setTimeout(r, 15000));
     await page.waitForTimeout(15000);
