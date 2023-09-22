@@ -52,8 +52,47 @@ const quoraPost = async (req, res) => {
       console.error('Tab with text "Create Post" not found.');
     }
 
-    await page.waitForTimeout(15000);
+    await page.waitForTimeout(3000);
+    
+    //Click Everyone
+    await page.evaluate(() => {
+      const buttons = document.querySelectorAll('button');
+      for (const button of buttons) {
+        if (button) {
+          const innerTextElement = button.querySelector('.q-text .qu-ellipsis .qu-whiteSpace--nowrap');
+          if (innerTextElement) {
+            const innerText = innerTextElement.textContent.trim();
+            if (innerText === 'Everyone') {
+              button.click();
+              console.log('Clicked "Everyone" button successfully.');
+              break;
+            }
+          }
+        }
+      }
+    });
 
+    await page.waitForTimeout(3000);
+
+    //Choose Space
+    await page.evaluate(() => {
+      const buttons = document.querySelectorAll('span');
+      for (const button of buttons) {
+        if (button) {
+          const innerTextElement = button.querySelector('.q-text');
+          if (innerTextElement) {
+            const innerText = innerTextElement.textContent.trim();
+            if (innerText === `Nagu Dharan's Space`) {
+              button.click();
+              console.log(`Clicked "Nagu Dharan's Space" button successfully.`);
+              break;
+            }
+          }
+        }
+      }
+    });
+
+    await page.waitForTimeout(3000);
     // Set the contentHTML in the browser context
     await page.evaluate((contentHTML) => {
       const contentDiv = document.querySelector('div.content');
@@ -64,7 +103,7 @@ const quoraPost = async (req, res) => {
 
     console.log('Added text to "content" div successfully.');
 
-    await page.waitForTimeout(15000);
+    await page.waitForTimeout(5000);
 
     // Perform any additional actions and submit the post
 
