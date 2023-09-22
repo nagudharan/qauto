@@ -3,6 +3,8 @@ require("dotenv").config();
 
 const quoraPost = async (req, res) => {
   const { contentHTML } = req.body;
+  console.log(contentHTML);
+
   const browser = await puppeteer.launch({
     args: [
       "--disable-setuid-sandbox",
@@ -18,7 +20,6 @@ const quoraPost = async (req, res) => {
   try {
     const page = await browser.newPage();
     const cookiesString = process.env.QUORA_SessionCookie;
-    console.log(cookiesString);
     const cookiesArray = JSON.parse(cookiesString);
     for (const cookie of cookiesArray) {
       await page.setCookie(cookie);
